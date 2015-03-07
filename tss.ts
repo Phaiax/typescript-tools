@@ -630,7 +630,7 @@ if (configFile) {
     console.error(configObjectParsed.errors);
     process.exit(1);
   }
-  if (fileNames.length === 0 && configObjectParsed.fileNames > 0) {
+  if (fileNames.length === 0 && configObjectParsed.fileNames.length > 0) {
     fileNames = configObjectParsed.fileNames;
   } else if (fileNames.length === 0) {
     console.error("can't find project root");
