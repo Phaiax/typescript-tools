@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "outDir": "bin/",
+        "target": "es5",
+        "noEmitOnError": true
+    },
+    "files": [
+        "tss.ts"
+    ]
+}
