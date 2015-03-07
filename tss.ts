@@ -591,6 +591,7 @@ var configFile, configObject, configObjectParsed;
 
 // NOTE: partial options support only
 var commandLine = ts.parseCommandLine(ts.sys.args);
+var fileNames: string[] = [];
 
 if (commandLine.options.version) {
   console.log(require("../package.json").version);
@@ -602,14 +603,18 @@ if (commandLine.options.project) {
   configFile = ts.normalizePath(ts.combinePaths(commandLine.options.project,"tsconfig.json"));
 
 } else if (commandLine.fileNames.length===0) {
-
   configFile = findConfigFile();
   if (!configFile) {
     console.error("can't find project root");
     console.error("please specify root source file");
-    console.error("  or --project directory (containing a tsconfig.json)");
+    console.error("  or --project directory (containing a tsconfig.json with files[])");
     process.exit(1);
   }
+}
+
+
+if (commandLine.fileNames.length > 0) {
+  fileNames = commandLine.fileNames;
 }
 
 var options;
@@ -625,11 +630,20 @@ if (configFile) {
     console.error(configObjectParsed.errors);
     process.exit(1);
   }
+  if (fileNames.length === 0 && configObjectParsed.fileNames > 0) {
+    fileNames = configObjectParsed.fileNames;
+  } else if (fileNames.length === 0) {
+    console.error("can't find project root");
+    console.error("please specify root source file");
+    console.error("  or --project directory (containing a tsconfig.json with files[])");
+    process.exit(1);
+  }
   options = ts.extend(commandLine.options,configObjectParsed.options);
 } else {
   options = ts.extend(commandLine.options,ts.getDefaultCompilerOptions());
 }
 
+
 var tss = new TSS();
-tss.setup([commandLine.fileNames[0]],options);
+tss.setup(fileNames,options);
 tss.listen();
