@@ -440,7 +440,7 @@ class TSS {
                               ? (startLine<1 ? 0 : this.lineColToPosition(file,startLine,1))
                               : script.content.length;
                 var endPos    = endLine<maxLines
-                              ? (endLine<1 ? 0 : this.lineColToPosition(file,endLine+1,0)-1) //??CHECK
+                              ? (endLine<1 ? 0 : this.lineColToPosition(file,endLine+1,0)) //??CHECK
                               : script.content.length;
 
                 this.editScript(file, startPos, endPos, lines.join(EOL));

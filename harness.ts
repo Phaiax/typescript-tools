@@ -38,7 +38,7 @@ export class ScriptInfo {
         // Apply edits
         var prefix = this.content.substring(0, minChar);
         var middle = newText;
-        var suffix = this.content.substring(limChar+1);
+        var suffix = this.content.substring(limChar);
         this.setContent(prefix + middle + suffix);
 
         // Store edit range + new length of script
