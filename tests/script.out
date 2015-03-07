@@ -1,7 +1,7 @@
 // test.script
 node ../bin/tss.js --project . test.ts
 // stdout
-"loaded PREFIX/test.ts, TSS listening.."
+"loaded PREFIX/test.ts and 0 more, TSS listening.."
 [{"file":"PREFIX/test.ts"
   ,"start":{"line":3
   ,"character":5}
@@ -534,7 +534,7 @@ var a = [];
 // issue-9.script
 node ../bin/tss.js --project . empty.ts
 // stdout
-"loaded PREFIX/empty.ts, TSS listening.."
+"loaded PREFIX/empty.ts and 0 more, TSS listening.."
 "updated PREFIX/empty.ts, (1/0) errors"
 [{"file":"PREFIX/empty.ts"
   ,"start":{"line":2
@@ -564,7 +564,7 @@ node ../bin/tss.js --project . empty.ts
 // issue-10.script
 node ../bin/tss.js --project . empty.ts
 // stdout
-"loaded PREFIX/empty.ts, TSS listening.."
+"loaded PREFIX/empty.ts and 0 more, TSS listening.."
 "updated PREFIX/empty.ts, (0/0) errors"
 "updated PREFIX/empty.ts, (0/0) errors"
 {"def":{"fileName":"PREFIX/empty.ts"
@@ -585,7 +585,7 @@ node ../bin/tss.js --project . empty.ts
 // issue-11.script
 node ../bin/tss.js --project . empty.ts
 // stdout
-"loaded PREFIX/empty.ts, TSS listening.."
+"loaded PREFIX/empty.ts and 0 more, TSS listening.."
 "updated PREFIX/empty.ts, (1/1) errors"
 [{"file":"PREFIX/empty.ts"
   ,"start":{"line":1
@@ -612,7 +612,7 @@ node ../bin/tss.js --project . empty.ts
 // issue-12.script
 node ../bin/tss.js --project . empty.ts
 // stdout
-"loaded PREFIX/empty.ts, TSS listening.."
+"loaded PREFIX/empty.ts and 0 more, TSS listening.."
 "updated PREFIX/empty.ts, (0/0) errors"
 null
 "TSS closing"
@@ -622,7 +622,7 @@ null
 // issue-13.script
 node ../bin/tss.js --project . empty.ts
 // stdout
-"loaded PREFIX/empty.ts, TSS listening.."
+"loaded PREFIX/empty.ts and 0 more, TSS listening.."
 "updated PREFIX/empty.ts, (0/1) errors"
 {"isMemberCompletion":false
   ,"isNewIdentifierLocation":false
@@ -688,7 +688,7 @@ node ../bin/tss.js --project . empty.ts
 // partial-update.script
 node ../bin/tss.js --project . empty.ts
 // stdout
-"loaded PREFIX/empty.ts, TSS listening.."
+"loaded PREFIX/empty.ts and 0 more, TSS listening.."
 "updated PREFIX/empty.ts, (0/0) errors"
 dumping PREFIX/empty.ts
 function foo(bar) {
@@ -743,7 +743,7 @@ bozo;
 // update-nocheck-completion-chain.script
 node ../bin/tss.js --project . empty.ts
 // stdout
-"loaded PREFIX/empty.ts, TSS listening.."
+"loaded PREFIX/empty.ts and 0 more, TSS listening.."
 "updated PREFIX/empty.ts"
 {"isMemberCompletion":true
   ,"isNewIdentifierLocation":false
@@ -811,7 +811,7 @@ node ../bin/tss.js --project . empty.ts
 // issue-15.script
 node ../bin/tss.js --project . issue-15.ts
 // stdout
-"loaded PREFIX/issue-15.ts, TSS listening.."
+"loaded PREFIX/issue-15.ts and 0 more, TSS listening.."
 "updated PREFIX/issue-15.ts"
 {"kind":"local var"
   ,"kindModifiers":""
@@ -880,7 +880,7 @@ node ../bin/tss.js --project . issue-15.ts
 // issue-17.script
 node ../bin/tss.js --project . issue-17.ts
 // stdout
-"loaded PREFIX/issue-17.ts, TSS listening.."
+"loaded PREFIX/issue-17.ts and 0 more, TSS listening.."
 [{"ref":{"fileName":"PREFIX/issue-17-import.ts"
   ,"textSpan":{"start":58
   ,"length":5}
@@ -928,7 +928,7 @@ node ../bin/tss.js --project . issue-17.ts
 // concat-map.script
 node ../bin/tss.js --project . empty.ts
 // stdout
-"loaded PREFIX/empty.ts, TSS listening.."
+"loaded PREFIX/empty.ts and 0 more, TSS listening.."
 "updated PREFIX/empty.ts, (0/0) errors"
 []
 "TSS closing"
