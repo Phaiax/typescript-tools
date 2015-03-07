@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft, Claus Reinke. All rights reserved.
-// Licensed under the Apache License, Version 2.0. 
+// Licensed under the Apache License, Version 2.0.
 // See LICENSE.txt in the project root for complete license information.
 
 ///<reference path='typings/node/node.d.ts'/>
@@ -38,13 +38,13 @@ export class ScriptInfo {
         // Apply edits
         var prefix = this.content.substring(0, minChar);
         var middle = newText;
-        var suffix = this.content.substring(limChar);
+        var suffix = this.content.substring(limChar+1);
         this.setContent(prefix + middle + suffix);
 
         // Store edit range + new length of script
         this.editRanges.push({
             length: this.content.length,
-            textChangeRange: 
+            textChangeRange:
               ts.createTextChangeRange( ts.createTextSpanFromBounds(minChar, limChar)
                                       , newText.length)
         });
