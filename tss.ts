@@ -1,5 +1,5 @@
 // Copyright (c) Claus Reinke. All rights reserved.
-// Licensed under the Apache License, Version 2.0. 
+// Licensed under the Apache License, Version 2.0.
 // See LICENSE.txt in the project root for complete license information.
 
 ///<reference path='typings/node/node.d.ts'/>
@@ -88,19 +88,19 @@ class TSS {
 
   private updateScript(fileName: string, content: string) {
       var script = this.fileNameToScript[fileName];
-      if (script !== null) {
+      if (script !== undefined) {
         script.updateContent(content);
       } else {
         this.fileNameToScript[fileName] = new harness.ScriptInfo(fileName, content);
       }
-      this.snapshots[fileName] = new harness.ScriptSnapshot(this.fileNameToScript[fileName]); 
+      this.snapshots[fileName] = new harness.ScriptSnapshot(this.fileNameToScript[fileName]);
   }
 
   private editScript(fileName: string, minChar: number, limChar: number, newText: string) {
       var script = this.fileNameToScript[fileName];
-      if (script !== null) {
+      if (script !== undefined) {
           script.editContent(minChar, limChar, newText);
-          this.snapshots[fileName] = new harness.ScriptSnapshot(script); 
+          this.snapshots[fileName] = new harness.ScriptSnapshot(script);
           return;
       }
       throw new Error("No script with name '" + fileName + "'");
@@ -196,7 +196,7 @@ class TSS {
       this.fileNames.push(filename);
       this.fileNameToScript[filename] =
         new harness.ScriptInfo(filename,source.text);
-      this.snapshots[filename] = new harness.ScriptSnapshot(this.fileNameToScript[filename]); 
+      this.snapshots[filename] = new harness.ScriptSnapshot(this.fileNameToScript[filename]);
     });
 
     // Get a language service
@@ -209,7 +209,7 @@ class TSS {
 //        getLocalizedDiagnosticMessages?(): any;
 //        getCancellationToken : ()=>this.compilerHost.getCancellationToken(),
         getCurrentDirectory : ()=>this.compilerHost.getCurrentDirectory(),
-        getDefaultLibFileName : 
+        getDefaultLibFileName :
           (options: ts.CompilerOptions)=>this.compilerHost.getDefaultLibFileName(options),
         log : (message)=>undefined, // ??
         trace : (message)=>undefined, // ??
@@ -420,7 +420,7 @@ class TSS {
 
           file       = this.resolveRelativePath(m[6]);
           script     = this.fileNameToScript[file];
-          added      = script==null;
+          added      = script===undefined;
           range      = !!m[3]
           check      = !m[1]
 
