@@ -43,7 +43,7 @@ class TSS {
   public fileNames: string[];
   public lsHost : ts.LanguageServiceHost;
   public ls : ts.LanguageService;
-  public rootFile : string;
+  public rootFiles : string[];
 //  public resolutionResult : ts.ReferenceResolutionResult;
   public lastError;
 
@@ -171,8 +171,8 @@ class TSS {
   }
 
   /** load file and dependencies, prepare language service for queries */
-  public setup(file,options) {
-    this.rootFile = this.resolveRelativePath(file);
+  public setup(files,options) {
+    this.rootFiles = files.map(this.resolveRelativePath);
 
     this.compilerOptions             = options;
     // this.compilerOptions.diagnostics = true;
@@ -184,7 +184,7 @@ class TSS {
     // build program from root file,
     // chase dependencies (references and imports), normalize file names, ...
     this.compilerHost = ts.createCompilerHost(this.compilerOptions);
-    this.program      = ts.createProgram([this.rootFile],this.compilerOptions,this.compilerHost);
+    this.program      = ts.createProgram(this.rootFiles,this.compilerOptions,this.compilerHost);
 
     this.fileNames        = [];
     this.fileNameToScript = {};
@@ -525,8 +525,8 @@ class TSS {
         } else if (m = match(cmd,/^reload$/)) { // reload current project
 
           // TODO: keep updated (in-memory-only) files?
-          this.setup(this.rootFile,this.compilerOptions);
-          this.outputJSON('"reloaded '+this.rootFile+', TSS listening.."');
+          this.setup(this.rootFiles,this.compilerOptions);
+          this.outputJSON('"reloaded '+this.rootFiles[0]+' and '+(this.rootFiles.length-1)+' more, TSS listening.."');
 
         } else if (m = match(cmd,/^quit$/)) {
 
@@ -561,7 +561,7 @@ class TSS {
 
     });
 
-    this.outputJSON('"loaded '+this.rootFile+', TSS listening.."');
+    this.outputJSON('"loaded '+this.rootFiles[0]+' and '+(this.rootFiles.length-1)+' more, TSS listening.."');
 
   }
 }
@@ -631,5 +631,5 @@ if (configFile) {
 }
 
 var tss = new TSS();
-tss.setup(commandLine.fileNames[0],options);
+tss.setup([commandLine.fileNames[0]],options);
 tss.listen();
