@@ -420,7 +420,7 @@ class TSS {
 
           file       = this.resolveRelativePath(m[6]);
           script     = this.fileNameToScript[file];
-          added      = !!script;
+          added      = !script;
           range      = !!m[3]
           check      = !m[1]
 
